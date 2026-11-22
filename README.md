@@ -1,5 +1,7 @@
 # Projeto Calculadora Gráfica
 
+Este é um projeto de arquitetura monolítica em camadas para uma calculadora gráfica
+desenvolvido com NestJS, Postgres, TypeORM e Docker Compose.
 
 ## Arquitetura
 
@@ -14,6 +16,11 @@ typescript / 5
 ## Api / versão
 
 NestJS / 11
+
+
+## Banco de dados / ORM
+
+PostgreSQL / TypeORM
 
 
 ## Entidades
