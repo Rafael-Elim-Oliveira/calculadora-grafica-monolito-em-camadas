@@ -27,7 +27,7 @@ export class GraficoTypeOrmRepository implements IGraficoRepository {
         return this.ormRepository.find({
             where: { usuario: { id: usuarioId } },
             order: { dataCriacao: 'DESC'},
-        })
+        });
     }
 
     async deletar(id: string): Promise<void> {
