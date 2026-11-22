@@ -46,7 +46,7 @@ PostgreSQL / TypeORM
 
 
 ## Diretório
-
+```
 calculadora-grafica/
 ├── docker-compose.yml                                       # Container do PostgreSQL
 ├── package.json
@@ -74,7 +74,7 @@ calculadora-grafica/
     │   └── usuario.service.ts
     ├── app.module.ts                                        # Módulo raiz (Injeção de Dependência + TypeORM)
     └── main.ts                                              # Ponto de entrada + ValidationPipe global
-
+```
 
 
 ## Como rodar
