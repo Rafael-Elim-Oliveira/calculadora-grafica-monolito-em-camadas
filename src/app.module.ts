@@ -10,20 +10,29 @@ import { USUARIO_REPOSITORY } from './domain/repositories/usuario.repository.int
 import { UsuarioTypeOrmRepository } from './infrastructure/repositories/usuario.typeorm-repository';
 import { GRAFICO_REPOSITORY } from './domain/repositories/grafico.repository.interface';
 import { GraficoTypeOrmRepository } from './infrastructure/repositories/grafico.typeorm-repository';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'loalhost',
-      port: 5432,
-      username: 'calculadora',
-      password: 'calculadora',
-      database: 'calculadora_db',
-      entities: [Usuario, Grafico],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
     }),
-    TypeOrmModule.forFeature([Usuario, Grafico])
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USER'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
+        entities: [Usuario, Grafico],
+        autoLoadEntities: true,
+        synchronize: true,
+      })
+    }),
   ],
   controllers: [UsuarioController, GraficoController],
   providers: [

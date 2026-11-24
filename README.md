@@ -86,6 +86,7 @@ calculadora-grafica/
 
 ### 2. Subir o banco de dados via Docker
 ```bash
+    docker compose up -d build          #pela primeir vez
     docker compose up -d
 ```
 
